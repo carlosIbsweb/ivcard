@@ -1,0 +1,146 @@
+/**********IV CARD**********/
+#iv-card {
+    display: flex;
+}
+/**********END IV CARD**********/
+
+/**********NAVEGACAO**********/
+.nav-ivcard {
+    display:flex;
+}
+.nav-ivcard nav {
+    height: 100vh;
+    background: #2b2b2b;
+    display: inline-flex;
+    width: 60px;
+    justify-content: center;
+    z-index: 1;
+}
+.nav-ivcard ul {
+    width: 100% !important;
+    margin: 0 !important;
+}
+.nav-ivcard ul li {
+    float:inherit
+}
+.nav-ivcard li a {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    color: #fff;
+    opacity: 0.7;
+    line-height: 1.5rem
+}
+.nav-ivcard li a.active {
+    background:#535353;
+    cursor:not-allowed;
+    opacity:1
+}
+.nav-ivcard li a:hover {
+    opacity: 1;
+}
+
+.nav-ivcard .legenda {
+    font-size: 11px;
+}
+/**********END NAVEGACAO**********/
+
+.navegacao-dados {
+    display:flex
+}
+.navegacao-inner {
+    background:#535353;
+    padding: 15px;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-width: 279px;
+    transition: all 0.3s;
+    margin-left: -50px;
+    display:flex;
+}
+.navegacao-dados.close {
+    opacity: 0;
+}
+.navegacao-close {
+    display:flex;
+    align-items:center;
+    height:100%
+}
+.navegacao-dados-close {
+    background:#2b2b2b;
+    padding:30px 0;
+    border-radius:0 100% 100% 0;
+    color:#fff;
+    cursor:pointer;
+}
+/**********END NAVEGACAO DADADOS**********/
+
+/**********NAVEGACAO MODELOS**********/
+
+.ivcard-modelos {
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.ivcard-modelos .modelo-item {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+.ivcard-modelos .modelo-item img {
+    max-width: 100%;
+    object-fit: cover;
+}
+/*********END NAVEGACAO MODELOS********/
+
+/**********CONTENT**********/
+.content-ivcard {
+    flex:1;
+    padding: 10px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+/********END CONTENT**********/
+
+/**********TEMPLATE**********/
+#ivcard-template {
+    width: 50vh;
+    height: 90vh;
+}
+.ivcard-template-inner {
+    display:flex;
+    flex-direction:column;
+}
+.template-top {
+    background:#000;
+    height: 46vh;
+    display:flex;
+    justify-content:center;
+    flex-direction: column;
+}
+.template-top h3 {
+    font-size: 4vh;
+    color:#fff;
+    text-align:center;
+}
+.template-middle {
+    background: #158758;
+    height: 31vh;
+}
+.template-footer {
+    background:#898784;
+    height: 14vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+/**********END TEMPLATE**********/

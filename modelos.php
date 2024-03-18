@@ -1,0 +1,33 @@
+<?php
+
+echo '[
+    {"id":1,"url":"modelos/celular-2-2.webp"},
+    {"id":2,"url":"modelos/celular-3-3.webp"},
+    {"id":2,"url":"modelos/celular-5-1.webp"},
+    {"id":2,"url":"modelos/celular_4-2.webp"},
+    {"id":1,"url":"modelos/celular-2-2.webp"},
+    {"id":2,"url":"modelos/celular-3-3.webp"},
+    {"id":2,"url":"modelos/celular-5-1.webp"},
+    {"id":2,"url":"modelos/celular_4-2.webp"},
+    {"id":1,"url":"modelos/celular-2-2.webp"},
+    {"id":2,"url":"modelos/celular-3-3.webp"},
+    {"id":2,"url":"modelos/celular-5-1.webp"},
+    {"id":2,"url":"modelos/celular_4-2.webp"},
+    {"id":1,"url":"modelos/celular-2-2.webp"},
+    {"id":2,"url":"modelos/celular-3-3.webp"},
+    {"id":2,"url":"modelos/celular-5-1.webp"},
+    {"id":2,"url":"modelos/celular_4-2.webp"},
+    {"id":1,"url":"modelos/celular-2-2.webp"},
+    {"id":2,"url":"modelos/celular-3-3.webp"},
+    {"id":2,"url":"modelos/celular-5-1.webp"},
+    {"id":2,"url":"modelos/celular_4-2.webp"},
+    {"id":1,"url":"modelos/celular-2-2.webp"},
+    {"id":2,"url":"modelos/celular-3-3.webp"},
+    {"id":2,"url":"modelos/celular-5-1.webp"},
+    {"id":2,"url":"modelos/celular_4-2.webp"},
+    {"id":1,"url":"modelos/celular-2-2.webp"},
+    {"id":2,"url":"modelos/celular-3-3.webp"},
+    {"id":2,"url":"modelos/celular-5-1.webp"},
+    {"id":2,"url":"modelos/celular_4-2.webp"}
+]';
+exit();
