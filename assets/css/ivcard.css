@@ -113,6 +113,7 @@
 #ivcard-template {
     width: 50vh;
     height: 90vh;
+    overflow: hidden;
 }
 .ivcard-template-inner {
     display:flex;
@@ -122,7 +123,7 @@
     background:#000;
     height: 46vh;
     display:flex;
-    justify-content:center;
+    justify-content: space-around;
     flex-direction: column;
 }
 .template-top h3 {
@@ -141,6 +142,20 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
+}
+.template-top .imagem img {
+    width: 20vh;
+    height: 20vh;
+    border-radius: 50%;
+    border: 0.5vh solid red;
+    margin-top: 18%;
+    object-fit: cover;
+}
+.template-top .imagem {
+    display:flex;
+    justify-content:center;
+    flex: 1;
+    align-items: center;
 }
 
 /**********END TEMPLATE**********/
