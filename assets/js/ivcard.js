@@ -1,5 +1,6 @@
 import { handleStatus } from "./modules/promise-helpers.js"
 import { modelos, navegacaoDados } from "./modules/modelos.js";
+import { ivcardIcones } from "./modules/icones.js";
 
 
 let nav = document
@@ -18,3 +19,14 @@ nav.addEventListener('click',function(event){
         .then(navegacaoDados)
         .catch(err => console.log);
 })
+
+
+fetch('http://localhost/ivcard/usuario.php')
+        .then(handleStatus)
+        .then(dados => {
+            let ivIcones = document.querySelector('.ivcard-icones')
+            for(let dado of dados.icones){
+                ivIcones.innerHTML += `<span>${ivcardIcones[dado]}</span>`
+            }
+        })
+        .catch(err => console.log);

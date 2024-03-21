@@ -114,29 +114,36 @@
     width: 50vh;
     height: 90vh;
     overflow: hidden;
+    border-radius: 5vh;
+    background-size: cover !important;
+    padding: 4vh;
 }
 .ivcard-template-inner {
     display:flex;
     flex-direction:column;
+    background-size:cover !important;
+    background-position:center !important;
 }
 .template-top {
-    background:#000;
-    height: 46vh;
+    height: 43vh;
     display:flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-direction: column;
 }
 .template-top h3 {
-    font-size: 4vh;
+    font-size: 3.5vh;
     color:#fff;
     text-align:center;
+    margin:0;
 }
 .template-middle {
-    background: #158758;
     height: 31vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .template-footer {
-    background:#898784;
+    /* background:#898784; */
     height: 14vh;
     display: flex;
     justify-content: center;
@@ -148,14 +155,41 @@
     height: 20vh;
     border-radius: 50%;
     border: 0.5vh solid red;
-    margin-top: 18%;
     object-fit: cover;
 }
 .template-top .imagem {
     display:flex;
     justify-content:center;
-    flex: 1;
     align-items: center;
+    padding: 3vh 0;
+}
+.template-top .logotipo {
+    display:flex;
+    justify-content:center;
+}
+.template-top .logotipo img {
+    height: 4vh
+}
+.ivcard-icones svg {
+    fill:#fff;
+    height:6vh;
+    width:6vh;
+}
+.ivcard-icones {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap
+}
+.ivcard-icones span {
+    width: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2vh;
+    border-radius: 3vh 0 3vh;
+    padding:2vh;
+    border: 0.5vh solid red;
 }
 
 /**********END TEMPLATE**********/
