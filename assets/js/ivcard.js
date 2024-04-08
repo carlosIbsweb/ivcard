@@ -21,12 +21,43 @@ nav.addEventListener('click',function(event){
 })
 
 
+/*******
+ *GERANDO O TEMPLATE COM BASE NOS DADOS DO USUÁRIO
+ ********/
+
 fetch('http://localhost/ivcard/usuario.php')
         .then(handleStatus)
         .then(dados => {
-            let ivIcones = document.querySelector('.ivcard-icones')
-            for(let dado of dados.icones){
-                ivIcones.innerHTML += `<span>${ivcardIcones[dado]}</span>`
-            }
+            new Vue({
+                el: "#ivcard-template",
+                data: {
+                    nome: dados.nome,
+                    imagem: dados.imagem,
+                    icones: dados.icones
+                },
+                methods: {
+                    ivcardIcones(icone) {
+                        return ivcardIcones[icone]
+                    },
+                    updateNome(v) {
+                        this.nome = event.target.innerText
+                    },
+                    gerar() {
+                        let gerarDados = {
+                            nome: this.nome,
+                            imagem: this.imagem,
+                            icones: this.icones
+                        }
+
+                        console.log(JSON.stringify(gerarDados))
+                    }
+                },
+                watch: {
+                    nome() {this.gerar()}
+                },
+                mounted() {
+                    this.gerar();
+                }
+            })
         })
         .catch(err => console.log);

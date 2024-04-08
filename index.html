@@ -49,15 +49,15 @@
                             <img src="https://ibsweb.com.br/ibsAssets/logo-footer.svg" />
                         </div>
                         <div class="imagem">
-                            <img src="https://ibsweb.com.br/wp-content/uploads/2021/10/bernardo-1024x964.jpg" />
+                            <img :src="imagem" />
                         </div>
                         <div class="nome">
-                            <h3>José Bernardo Wernik Conselheiro</h3>
+                            <h3 @input="updateNome" ref="editable" contenteditable="true">{{nome}}</h3>
                         </div>
                     </div>
                     <div class="template-middle">
                         <div class="ivcard-icones">
-
+                            <span v-for="icone in icones" v-html="ivcardIcones(icone)"></span>
                         </div>
                     </div>
                     <div class="template-footer">
@@ -70,6 +70,7 @@
         </div>
     </div>
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="assets/js/vue.mim.js"></script>
     <script src="assets/js/ivcard_app.min.js"></script>
     <script type="module" src="assets/js/ivcard.js"></script>
     <script src="assets/js/jquery.lazy.js"></script>

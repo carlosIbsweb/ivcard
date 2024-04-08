@@ -2,6 +2,9 @@
 #iv-card {
     display: flex;
 }
+[contenteditable] {
+    outline:none
+}
 /**********END IV CARD**********/
 
 /**********NAVEGACAO**********/
