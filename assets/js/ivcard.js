@@ -1,6 +1,7 @@
 import { handleStatus } from "./modules/promise-helpers.js"
 import { modelos, navegacaoDados } from "./modules/modelos.js";
 import { ivcardIcones } from "./modules/icones.js";
+import CardsTemplate from "./components/cardsTemplate.js";
 
 
 let nav = document
@@ -29,7 +30,7 @@ fetch('http://localhost/ivcard/usuario.php')
         .then(handleStatus)
         .then(dados => {
             new Vue({
-                el: "#ivcard-template",
+                el: "#ivcards",
                 data: {
                     nome: dados.nome,
                     imagem: dados.imagem,
@@ -52,6 +53,7 @@ fetch('http://localhost/ivcard/usuario.php')
                         console.log(JSON.stringify(gerarDados))
                     }
                 },
+                template: CardsTemplate,
                 watch: {
                     nome() {this.gerar()}
                 },
