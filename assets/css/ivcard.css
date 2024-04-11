@@ -173,8 +173,8 @@
 .template-top .logotipo img {
     height: 4vh
 }
-.ivcard-icones svg {
-    fill:#fff;
+.ivcard-icones svg, .ivcard-icones svg path, .ivcard-icones svg circle {
+    fill: #ffffff !important;
     height:6vh;
     width:6vh;
 }

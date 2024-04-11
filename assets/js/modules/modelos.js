@@ -12,6 +12,12 @@ export const modelos = res => {
     
 }
 
+export const outra = res => {
+    let modelos = document.createElement('div')
+   return 'bobo'
+    
+}
+
 export const navegacaoDados = dados => {
     let navegacaoDados = document.querySelector('.navegacao-dados');
     let navegacaoDadosInner = navegacaoDados.querySelector('.navegacao-inner');

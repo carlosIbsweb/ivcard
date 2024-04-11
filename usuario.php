@@ -10,7 +10,11 @@ echo '
                 "email",
                 "site",
                 "location",
-                "instagram"
+                "instagram",
+                "facebook",
+                "twitter",
+                "youtube",
+                "tiktok"
         ]
     }
 ';

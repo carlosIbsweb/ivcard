@@ -1,32 +1,36 @@
 import { handleStatus } from "./modules/promise-helpers.js"
-import { modelos, navegacaoDados } from "./modules/modelos.js";
+import { modelos, outra, navegacaoDados } from "./modules/modelos.js";
 import { ivcardIcones } from "./modules/icones.js";
 import CardsTemplate from "./components/cardsTemplate.js";
 
 
-let nav = document
+let navs = document
 .querySelector('.nav-ivcard')
-.querySelector('a')
+.querySelectorAll('a')
 
+
+for(let nav of navs){
 nav.addEventListener('click',function(event){
     
+    //Bloqueando o click no link que estiver ativo.
     if(event.target.parentNode.classList.contains('active')){
         return false
     }
         event.target.parentNode.classList.toggle('active') 
         fetch('http://localhost/ivcard/modelos.php')
         .then(handleStatus)
-        .then(modelos)
+        .then(outra)
         .then(navegacaoDados)
         .catch(err => console.log);
 })
+}
 
 
 /*******
  *GERANDO O TEMPLATE COM BASE NOS DADOS DO USUÁRIO
  ********/
 
-fetch('http://localhost/ivcard/usuario.php')
+fetch('../ivcard/usuario.php')
         .then(handleStatus)
         .then(dados => {
             new Vue({
@@ -34,7 +38,8 @@ fetch('http://localhost/ivcard/usuario.php')
                 data: {
                     nome: dados.nome,
                     imagem: dados.imagem,
-                    icones: dados.icones
+                    icones: dados.icones,
+                    rangeValue: 0
                 },
                 methods: {
                     ivcardIcones(icone) {
