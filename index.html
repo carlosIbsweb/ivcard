@@ -12,43 +12,18 @@
     <title>IV Card</title>
 </head>
 <body>
-    <div id="iv-card">
-        <div class="nav-ivcard">
-            <nav>
-                <ul>
-                    <li class="modelos">
-                        <a class="waves-effect waves-light">
-                            <span class="material-icons">
-                                app_settings_alt
-                            </span>
-                            <span class="legenda">Modelos</span>
-                        </a>
-                    </li>
-                    <li class="modelos">
-                        <a class="waves-effect waves-light">
-                            <span class="material-icons">
-                                apps
-                            </span>
-                            <span class="legenda">Ícones</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="navegacao-dados scale-transition close">
-                <div class="navegacao-inner"></div>
-                <div class="navegacao-close">
-                    <span class="navegacao-dados-close material-icons">chevron_left</span>
-                </div>
-            </div>
-        </div>
-        <!--CARDS-->
-        <div id="ivcards"></div>
-        
-    </div>
+    <div id="iv-card"></div>
+    
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="assets/js/libs/vue.mim.js"></script>
     <script src="assets/js/libs/ivcard_app.min.js"></script>
     <script type="module" src="assets/js/ivcard.js"></script>
     <script src="assets/js/libs/jquery.lazy.js"></script>
+    <script>
+        $( document ).on('click','.ivcard-icon-inner',function(event){
+            event.preventDefault();
+            $(this).toggleClass('icone-selecionado')
+        })
+    </script>
 </body>
 </html>

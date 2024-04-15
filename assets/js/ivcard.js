@@ -1,70 +1,94 @@
-import { handleStatus } from "./modules/promise-helpers.js"
-import { modelos, outra, navegacaoDados } from "./modules/modelos.js";
+import { handleStatus, navegacaoType, removerObjetoChave, inicializarDropdown } from "./modules/promise-helpers.js"
+import { carregarDados,modelos, navegacaoDados } from "./modules/modelos.js";
 import { ivcardIcones } from "./modules/icones.js";
 import CardsTemplate from "./components/cardsTemplate.js";
+import {NavTemplate} from "./components/navTemplate.js";
 
-
-let navs = document
-.querySelector('.nav-ivcard')
-.querySelectorAll('a')
-
-
-for(let nav of navs){
-nav.addEventListener('click',function(event){
-    
-    //Bloqueando o click no link que estiver ativo.
-    if(event.target.parentNode.classList.contains('active')){
-        return false
-    }
-        event.target.parentNode.classList.toggle('active') 
-        fetch('http://localhost/ivcard/modelos.php')
-        .then(handleStatus)
-        .then(outra)
-        .then(navegacaoDados)
-        .catch(err => console.log);
-})
-}
 
 
 /*******
  *GERANDO O TEMPLATE COM BASE NOS DADOS DO USUÁRIO
  ********/
-
 fetch('../ivcard/usuario.php')
         .then(handleStatus)
-        .then(dados => {
+        .then(usuario => {
             new Vue({
-                el: "#ivcards",
+                el: "#iv-card",
                 data: {
-                    nome: dados.nome,
-                    imagem: dados.imagem,
-                    icones: dados.icones,
-                    rangeValue: 0
+                    user: {
+                        nome: usuario.nome,
+                        imagem: usuario.imagem,
+                        icones: usuario.icones,
+                    },
+                    navegacao: [],
+                    rangeValue: 0,
+                    dadosNavegacao: `<span @click="bora">nadassssssssss</span>`
                 },
                 methods: {
                     ivcardIcones(icone) {
                         return ivcardIcones[icone]
                     },
                     updateNome(v) {
-                        this.nome = event.target.innerText
+                        this.user.nome = event.target.innerText
                     },
                     gerar() {
                         let gerarDados = {
-                            nome: this.nome,
-                            imagem: this.imagem,
-                            icones: this.icones
+                            nome: this.user.nome,
+                            imagem: this.user.imagem,
+                            icones: this.user.icones
                         }
 
                         console.log(JSON.stringify(gerarDados))
+                    },
+                    //Quando eu clico em um menu de navegação
+                    Navegacao(dado,event) {
+                        if(!event.target.parentNode.classList.contains('active')){
+                            event.target.parentNode.classList.add('active')
+                        }else{
+                            return false;
+                        }
+                        fetch('http://localhost/ivcard/navegacao.php')
+                        .then(handleStatus)
+                        .then(dados => {
+                            this.navegacao = navegacaoType(dados,dado)
+                        })
+                        .then(navegacaoDados)
+                        .catch(err => console.log);
+                    },
+                    AdicionarIcone(icone) {
+                        /*
+                        *Verificar se já está incluso
+                        */
+                        const estaPresente = this.user.icones.some(objeto => objeto.icone === icone.icone);
+                        if(!estaPresente && this.user.icones.length < 6){
+                            this.user.icones.push(icone)
+                        }
+                        
+                        setTimeout(inicializarDropdown,200)
+                    },
+                    RemoverIcone(icone) {
+                        removerObjetoChave(icone,this.user.icones)
                     }
                 },
-                template: CardsTemplate,
+                
+                template: `
+                    <div id="iv-card">
+                        ${NavTemplate}
+                        ${CardsTemplate}
+                    </div>
+                    `,
                 watch: {
-                    nome() {this.gerar()}
+                    'user.nome': {handler() {this.gerar()}},
                 },
                 mounted() {
                     this.gerar();
+                    setTimeout(inicializarDropdown,200)
+                },
+                components: {
+                    'meu-componente': carregarDados
                 }
             })
         })
         .catch(err => console.log);
+
+        
