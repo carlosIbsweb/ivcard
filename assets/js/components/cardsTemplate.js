@@ -3,20 +3,26 @@ const CardsTemplate = `
     <div class="content-ivcard">
         <div id="ivcard-template" style="background: url(assets/img/capa_modelo_1.jpg)">
             <div class="ivcard-template-inner">
+              
                 <div class="template-top">
-                    <div class="logotipo">
-                        <img src="https://ibsweb.com.br/ibsAssets/logo-footer.svg" />
-                    </div>
-                    <div class="imagem">
-                        <img :src="user.imagem" />
-                    </div>
-                    <div class="nome">
-                        <h3 @input="updateNome" ref="editable" contenteditable="true">{{user.nome}}</h3>
+                    <div :class="[item.title, 'ivcard-item-edit']" v-for="(item, i) in user.templateTop" :key="item">
+                    <span class="btnEdit">
+                            <!-- Dropdown Trigger -->
+                            <a class='dropdown-button btn' href='#' :data-activates="'drop-'+item.title">...</a>
+                            <!-- Dropdown Structure -->
+                            <ul :id="'drop-'+item.title" class='dropdown-content'>
+                              <li><a @click="RemoverItem(item.title)"><i class="material-icons dp48">delete</i>Remover</a></li>
+                              <li class="divider"></li>
+                              <li><a href="#!"><i class="material-icons dp48">edit</i> Editar</a></li>
+                            </ul>
+                            </span>
+                    <h3 v-if="item.title === 'nome'">{{ item.value }}</h3>
+                    <img v-else-if="item.title === 'logotipo' || item.title === 'imagem'" :src="item.value" />
                     </div>
                 </div>
                 <div class="template-middle">
                     <div class="ivcard-icones">
-                        <span class="ivcard-icon-inner" v-for="(icone,i) in user.icones">
+                        <span class="ivcard-icon-inner ivcard-item-edit" v-for="(icone,i) in user.icones" :key="icone">
                             <span class="btnEdit">
                             <!-- Dropdown Trigger -->
                             <a class='dropdown-button btn' href='#' :data-activates="'drop-'+icone.icone">...</a>

@@ -6,9 +6,9 @@ export function navegacaoType(dados, type) {
     return dados.find(objeto => objeto.type === type);
 }
 
-export function removerObjetoChave(chave,array) {
+export function removerObjetoChave(chave,array,item) {
     for (let i = 0; i < array.length; i++) {
-        if (array[i].icone === chave) {
+        if (array[i][item] === chave) {
             array.splice(i, 1); // Remove o objeto com a chave desejada
             break; // Interrompe o loop, já que o objeto foi removido
         }

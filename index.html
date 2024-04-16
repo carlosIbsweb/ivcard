@@ -16,13 +16,14 @@
     
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="assets/js/libs/vue.mim.js"></script>
+    <script src="assets/js/libs/Sortable.min.js"></script>
     <script src="assets/js/libs/ivcard_app.min.js"></script>
     <script type="module" src="assets/js/ivcard.js"></script>
     <script src="assets/js/libs/jquery.lazy.js"></script>
     <script>
-        $( document ).on('click','.ivcard-icon-inner',function(event){
+        $( document ).on('click','.ivcard-item-edit',function(event){
             event.preventDefault();
-            $(this).toggleClass('icone-selecionado')
+            $(this).toggleClass('item-selecionado')
         })
     </script>
 </body>

@@ -16,8 +16,7 @@ fetch('../ivcard/usuario.php')
                 el: "#iv-card",
                 data: {
                     user: {
-                        nome: usuario.nome,
-                        imagem: usuario.imagem,
+                        templateTop: usuario.templateTop,
                         icones: usuario.icones,
                     },
                     navegacao: [],
@@ -67,7 +66,10 @@ fetch('../ivcard/usuario.php')
                         setTimeout(inicializarDropdown,200)
                     },
                     RemoverIcone(icone) {
-                        removerObjetoChave(icone,this.user.icones)
+                        removerObjetoChave(icone,this.user.icones,'icone')
+                    },
+                    RemoverItem(item) {
+                        removerObjetoChave(item,this.user.templateTop,'title')
                     }
                 },
                 
@@ -82,7 +84,31 @@ fetch('../ivcard/usuario.php')
                 },
                 mounted() {
                     this.gerar();
+                    /**
+                     * Inicilialiar o dropDown
+                     */
                     setTimeout(inicializarDropdown,200)
+
+                    /**
+                     * Efeito Sortable dos ícones
+                     */
+                    const sortable = new Sortable(document.querySelector('.ivcard-icones'), {
+                        animation: 150,
+                        onEnd: evt => {
+                          this.user.icones.splice(evt.newIndex, 0, this.user.icones.splice(evt.oldIndex, 1)[0]);
+                        }
+                      });
+
+                      /**
+                      * Efeito Sortable do TopTemplate
+                      */
+                      const sortableTemplateTop = new Sortable(document.querySelector('.template-top'), {
+                        animation: 150,
+                        onEnd: evt => {
+                          this.user.templateTop.splice(evt.newIndex, 0, this.user.templateTop.splice(evt.oldIndex, 1)[0]);
+                        }
+                      });
+
                 },
                 components: {
                     'meu-componente': carregarDados
