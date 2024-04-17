@@ -15,6 +15,17 @@ export function removerObjetoChave(chave,array,item) {
     }
 }
 
+export function updateTemplateTop(title,value,templateTop) {
+    for (let i = 0; i < templateTop.length; i++) {
+        if (templateTop[i].title === title) {
+            templateTop[i].value = value; 
+            break;
+        }
+    }
+
+    return templateTop;
+}
+
 export function inicializarDropdown() {
     $('.dropdown-button').dropdown({
         inDuration: 300,

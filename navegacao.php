@@ -132,6 +132,12 @@ echo '[
                 "url": "modelos/celular_4-2.webp"
             }
         ]
+    },
+    {
+        "type":"imagem"
+    },
+    {
+        "type":"title"
     }
 ]';
 exit();

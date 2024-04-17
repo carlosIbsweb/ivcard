@@ -26,6 +26,23 @@ export const carregarDados = {
                     <span @click="$root.AdicionarIcone(icon)" v-for="icon in $root.navegacao.icones" v-html="$root.ivcardIcones(icon.icone)"></span>
                 </div>
             </div>
+
+             <div v-if="$root.navegacao.type == 'imagem'">
+                <div class="ivcard-nav-imagem">
+                <label class="btn waves-effect waves-light" type="submit" name="action" for="updateImagem">Imagem
+                    <i class="material-icons right">send</i>
+                    <input type="file" @change="$root.handleFileChange" id="updateImagem" style="display:none">
+                </label>
+                </div>
+            </div>
+
+            <div v-if="$root.navegacao.type == 'title'">
+                <div class="ivcard-nav-logo">
+                <input type="text" @input="$root.editarTemplateTop('nome',event)" />
+                </div>
+            </div>
+
+            
         </div>`,
 }
 

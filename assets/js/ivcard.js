@@ -1,4 +1,4 @@
-import { handleStatus, navegacaoType, removerObjetoChave, inicializarDropdown } from "./modules/promise-helpers.js"
+import { handleStatus, navegacaoType, removerObjetoChave, inicializarDropdown, updateTemplateTop } from "./modules/promise-helpers.js"
 import { carregarDados,modelos, navegacaoDados } from "./modules/modelos.js";
 import { ivcardIcones } from "./modules/icones.js";
 import CardsTemplate from "./components/cardsTemplate.js";
@@ -21,7 +21,9 @@ fetch('../ivcard/usuario.php')
                     },
                     navegacao: [],
                     rangeValue: 0,
-                    dadosNavegacao: `<span @click="bora">nadassssssssss</span>`
+                    dadosNavegacao: `<span @click="bora">nadassssssssss</span>`,
+                    imagePreview: null,
+                    file: null
                 },
                 methods: {
                     ivcardIcones(icone) {
@@ -70,7 +72,23 @@ fetch('../ivcard/usuario.php')
                     },
                     RemoverItem(item) {
                         removerObjetoChave(item,this.user.templateTop,'title')
-                    }
+                    },
+
+                    /**
+                     * 
+                     * Imagem pessoa, inserir, editar e remover
+                     */
+                    handleFileChange(event) {
+                        const file = event.target.files[0];
+                        if (file) {
+                          this.file = file;
+                          this.user.templateTop = updateTemplateTop('imagem',URL.createObjectURL(file),this.user.templateTop);
+                          console.log(this.user.templateTop)
+                        }
+                      },
+                      editarTemplateTop(item,event) {
+                        this.user.templateTop = updateTemplateTop(item,event.target.value,this.user.templateTop);
+                      }
                 },
                 
                 template: `

@@ -13,11 +13,16 @@ const CardsTemplate = `
                             <ul :id="'drop-'+item.title" class='dropdown-content'>
                               <li><a @click="RemoverItem(item.title)"><i class="material-icons dp48">delete</i>Remover</a></li>
                               <li class="divider"></li>
-                              <li><a href="#!"><i class="material-icons dp48">edit</i> Editar</a></li>
+                              <li v-if="item.title === 'imagem'"><a @click="Navegacao('imagem',$event)"><i class="material-icons dp48">edit</i> Editar</a>
+                              <li v-else-if="item.title === 'nome'" @click="Navegacao('title',$event)"><a href="#!"><i class="material-icons dp48">edit</i> Editar</a></li>
+                              <li v-else ><a href="#!"><i class="material-icons dp48">edit</i> Editar</a></li>
+                              
+                              </li>
                             </ul>
                             </span>
                     <h3 v-if="item.title === 'nome'">{{ item.value }}</h3>
                     <img v-else-if="item.title === 'logotipo' || item.title === 'imagem'" :src="item.value" />
+                    
                     </div>
                 </div>
                 <div class="template-middle">
