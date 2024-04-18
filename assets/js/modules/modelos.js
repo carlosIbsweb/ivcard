@@ -67,15 +67,20 @@ export const components = {
 
 function removeActive(event) {
     let navegacao = document.querySelector('.nav-ivcard')
+    if(event.target.classList.contains('active')){
+        return false
+    }
+        
     
     let navsActive = navegacao.querySelectorAll('.active')
     if(navsActive){
         for(let navActive of navsActive){
-            navActive.classList.remove('active')
+            if(navActive)
+                navActive.classList.remove('active')
         }
     }
-
-    event.target.classList.add('active')
+    event.target.parentNode.classList.add('active')
+    
 }
 
 export const navegacaoDados = event => {
@@ -83,7 +88,21 @@ export const navegacaoDados = event => {
     let navegacaoDados = document.querySelector('.navegacao-dados');
     let navegacaoDadosInner = navegacaoDados.querySelector('.navegacao-inner');
     let navegacaoDadosClose = navegacaoDados.querySelector('.navegacao-dados-close');
-    let navegacao = document.querySelector('.nav-ivcard')
+    let navegacao = document.querySelector('.nav-ivcard');
+    let navegacaoDadosActive = navegacao.querySelectorAll('.active');
+    let itemSelecionado = document.querySelector('.item-selecionado')
+
+    //Removendo os actives
+    let navs = navegacao.querySelectorAll('a')
+        
+    for(let nav of navs){
+        nav.removeEventListener('click',removeActive)
+        nav.addEventListener('click',removeActive)
+    }
+
+    //Removendo a classe item-selecionado
+    if(itemSelecionado)
+        itemSelecionado.classList.remove('item-selecionado')
 
     if (navegacaoDados) {
         //navegacaoDadosInner.innerHTML = dados;
@@ -96,17 +115,10 @@ export const navegacaoDados = event => {
 
             setTimeout(function() {
                 navegacaoDados.classList.add('close')
-                navegacao.querySelector('.active').classList.remove('active')
+                if(navegacaoDadosActive.length)
+                    navegacao.querySelector('.active').classList.remove('active')
             },100)
         });
-
-        //Removendo os actives
-        let navs = navegacao.querySelectorAll('a')
-        
-            for(let nav of navs){
-                nav.removeEventListener('click',removeActive)
-                nav.addEventListener('click',removeActive)
-            }
 
 
         // Carregamento das imagens

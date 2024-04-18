@@ -23,6 +23,7 @@
     <script>
         $( document ).on('click','.ivcard-item-edit',function(event){
             event.preventDefault();
+            $('.item-selecionado').removeClass('item-selecionado')
             $(this).toggleClass('item-selecionado')
         })
     </script>
