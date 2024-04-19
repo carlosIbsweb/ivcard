@@ -1,4 +1,4 @@
-import { handleStatus, navegacaoType, removerObjetoChave, inicializarDropdown, updateTemplateTop } from "./modules/promise-helpers.js"
+import { handleStatus, navegacaoType, removerObjetoChave, inicializarDropdown, updateTemplateTop, getTemplateTopValue} from "./modules/promise-helpers.js"
 import { carregarDados,modelos, navegacaoDados } from "./modules/modelos.js";
 import { ivcardIcones } from "./modules/icones.js";
 import CardsTemplate from "./components/cardsTemplate.js";
@@ -43,11 +43,16 @@ fetch('../ivcard/usuario.php')
                     },
                     //Quando eu clico em um menu de navegação
                     Navegacao(dado,event) {
-                        if(!event.target.parentNode.classList.contains('active')){
-                            event.target.parentNode.classList.add('active')
+                        
+                        if(!event.target.parentNode.classList.contains('activeNav')){
+                            //Removendo os actives
+                            $('.activeNav').removeClass('activeNav')
+                            event.target.parentNode.classList.add('activeNav')
                         }else{
                             return false;
                         }
+
+
                         fetch('http://localhost/ivcard/navegacao.php')
                         .then(handleStatus)
                         .then(dados => {
@@ -88,7 +93,11 @@ fetch('../ivcard/usuario.php')
                       },
                       editarTemplateTop(item,event) {
                         this.user.templateTop = updateTemplateTop(item,event.target.value,this.user.templateTop);
+                      },
+                      getTemplateTopValue(title) {
+                        return getTemplateTopValue(title,this.user.templateTop)
                       }
+
                 },
                 
                 template: `

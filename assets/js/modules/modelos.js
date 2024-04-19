@@ -29,8 +29,8 @@ export const carregarDados = {
 
              <div v-if="$root.navegacao.type == 'imagem'">
                 <div class="ivcard-nav-imagem">
-                <label class="btn waves-effect waves-light" type="submit" name="action" for="updateImagem">Imagem
-                    <i class="material-icons right">send</i>
+                <label class="btn waves-effect waves-light darken-4" type="submit" name="action" for="updateImagem">Imagem
+                    <i class="material-icons right">add_a_photo</i>
                     <input type="file" @change="$root.handleFileChange" id="updateImagem" style="display:none">
                 </label>
                 </div>
@@ -38,7 +38,7 @@ export const carregarDados = {
 
             <div v-if="$root.navegacao.type == 'title'">
                 <div class="ivcard-nav-logo">
-                <input type="text" @input="$root.editarTemplateTop('nome',event)" />
+                <input type="text" @input="$root.editarTemplateTop('nome',event)" :value="$root.getTemplateTopValue('nome')"/>
                 </div>
             </div>
 
@@ -65,23 +65,6 @@ export const components = {
 }
 
 
-function removeActive(event) {
-    let navegacao = document.querySelector('.nav-ivcard')
-    if(event.target.classList.contains('active')){
-        return false
-    }
-        
-    
-    let navsActive = navegacao.querySelectorAll('.active')
-    if(navsActive){
-        for(let navActive of navsActive){
-            if(navActive)
-                navActive.classList.remove('active')
-        }
-    }
-    event.target.parentNode.classList.add('active')
-    
-}
 
 export const navegacaoDados = event => {
     
@@ -92,14 +75,7 @@ export const navegacaoDados = event => {
     let navegacaoDadosActive = navegacao.querySelectorAll('.active');
     let itemSelecionado = document.querySelector('.item-selecionado')
 
-    //Removendo os actives
-    let navs = navegacao.querySelectorAll('a')
         
-    for(let nav of navs){
-        nav.removeEventListener('click',removeActive)
-        nav.addEventListener('click',removeActive)
-    }
-
     //Removendo a classe item-selecionado
     if(itemSelecionado)
         itemSelecionado.classList.remove('item-selecionado')
@@ -109,21 +85,43 @@ export const navegacaoDados = event => {
         navegacaoDadosInner.style.marginLeft = 0;
         navegacaoDados.classList.remove('close')
 
-        navegacaoDadosClose.addEventListener('click', function (event) {
+        // Carregamento das imagens
+        $('.lazy').Lazy({
+            effect: 'fadeIn'
+        });
+    }
+
+    awOn('click','.navegacao-dados-close',function(event){
+        event.preventDefault()
+
+        let navegacaoDados = document.querySelector('.navegacao-dados');
+        let navegacaoDadosInner = navegacaoDados.querySelector('.navegacao-inner');
+
             let navegacaoDadosInnerWidth = window.getComputedStyle(navegacaoDados).width;
             navegacaoDadosInner.style.marginLeft = `-${navegacaoDadosInnerWidth}`
 
             setTimeout(function() {
                 navegacaoDados.classList.add('close')
-                if(navegacaoDadosActive.length)
-                    navegacao.querySelector('.active').classList.remove('active')
+                //Removendo os actives
+                $('.activeNav').removeClass('activeNav')
             },100)
-        });
+    })
 
 
-        // Carregamento das imagens
-        $('.lazy').Lazy({
-            effect: 'fadeIn'
+
+
+    function awOn(action, el, call) {
+        document.addEventListener(action, function(event) {
+            const target = event.target;
+    
+            // Verificar se o elemento tem a classe especificada
+            if (target.classList.contains(el.slice(1)) || 
+                // Verificar se o ID corresponde ao especificado
+                target.id === el.slice(1) || 
+                // Verificar se a tag name corresponde à especificada
+                target.tagName.toLowerCase() === el.toLowerCase()) {
+                call(event);
+            }
         });
     }
 };

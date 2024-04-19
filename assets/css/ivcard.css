@@ -149,6 +149,22 @@
     background-size:cover !important;
     background-position:center !important;
 }
+
+
+.navegacao-inner input {
+    color:#f9f9f9 !important;
+}
+.navegacao-inner input:focus {
+    border-bottom: 1px solid #adadad !important;
+    -webkit-box-shadow: 0 1px 0 0 #d1d1d1 !important;
+    box-shadow: 0 1px 0 0 #c4c4c4 !important;
+}
+.navegacao-inner .btn {
+    background:#5f5f5f
+}
+.navegacao-inner .btn:hover {
+    background:#3d3c3c
+}
 .template-top {
     height: 43vh;
     display:flex;

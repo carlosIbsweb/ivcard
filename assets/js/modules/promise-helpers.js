@@ -26,6 +26,16 @@ export function updateTemplateTop(title,value,templateTop) {
     return templateTop;
 }
 
+export function getTemplateTopValue(title, templateTop) {
+    for (let i = 0; i < templateTop.length; i++) {
+        if (templateTop[i].title === title) {
+            return templateTop[i].value; 
+        }
+    }
+
+    return null; // Se o título não for encontrado, retorne null ou outro valor padrão.
+}
+
 export function inicializarDropdown() {
     $('.dropdown-button').dropdown({
         inDuration: 300,
