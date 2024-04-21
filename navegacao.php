@@ -138,6 +138,9 @@ echo '[
     },
     {
         "type":"title"
+    },
+    {
+        "type":"styles"
     }
 ]';
 exit();

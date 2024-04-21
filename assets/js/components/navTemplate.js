@@ -21,6 +21,15 @@ export const NavTemplate = `
                 <span class="legenda">Ícones</span>
             </a>
         </li>
+
+        <li class="modelos">
+            <a @click="Navegacao('styles',$event)" class="waves-effect waves-light">
+                <span class="material-icons">
+                    style
+                </span>
+                <span class="legenda">Style</span>
+            </a>
+        </li>
     </ul>
 </nav>
 <div class="navegacao-dados scale-transition close">

@@ -48,6 +48,30 @@
 .nav-ivcard .legenda {
     font-size: 11px;
 }
+.nav-ivcard .ivcardColor {
+    display:flex;
+    padding: 0
+}
+.nav-ivcard .ivcardColor input {
+    display:none
+}
+.nav-ivcard .ivcardColor label {
+    border-radius: 60px;
+    height:14px;
+    width: 100%;
+    display:flex;
+    border: 1px solid #ddd;
+}
+.nav-item {
+    display:flex;
+    flex-direction:column;
+    margin-bottom: 20px;
+}
+.nav-item label {
+    color:#fff;
+    margin-bottom:4px;
+    text-transform:uppercase
+}
 /*---------- Navegacao Icones ----------*/
 .ivcard-nav-icones {
     display:flex;
@@ -131,7 +155,9 @@
     justify-content: center;
     height: 100vh;
 }
-
+.ivcard-render .content-ivcard {
+    padding:0;
+}
 /********END CONTENT**********/
 
 /**********TEMPLATE**********/
@@ -140,14 +166,26 @@
     height: 90vh;
     overflow: hidden;
     border-radius: 5vh;
-    background-size: cover !important;
+     background-size: cover !important;
+    background-position:center !important;
     padding: 4vh;
+}
+.ivcard-render #ivcard-template {
+    height: 90vh;
+    width: 50vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
 }
 .ivcard-template-inner {
     display:flex;
     flex-direction:column;
     background-size:cover !important;
     background-position:center !important;
+}
+.ivcard-render .ivcard-template-inner {
+    max-width: 40vh
 }
 
 
@@ -176,6 +214,13 @@
     color:#fff;
     text-align:center;
     margin:0;
+}
+.template-top p.description {
+    font-size: 2.8vh;
+    color:#fff;
+    text-align:center;
+    margin: 0;
+    font-weight: 300;
 }
 .template-middle {
     height: 31vh;
@@ -222,7 +267,8 @@
     align-items: center;
     flex-wrap: wrap
 }
-.ivcard-icones span.ivcard-icon-inner a:nth-child(2){
+/*Icone Template*/
+.ivcard-icones span.ivcard-icon-inner a.ivcard-item-icone {
     width: 10vh;
     display: flex;
     justify-content: center;
@@ -306,3 +352,13 @@
     justify-content:center;
 }
 /**********END TEMPLATE**********/
+
+
+/**********RESPONSIVO**********/
+@media screen and (max-width: 1080px){
+    .ivcard-render #ivcard-template {
+        width: 100%;
+        height: 100vh;
+        border-radius:0
+    }
+}

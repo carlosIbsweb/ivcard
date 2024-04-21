@@ -1,7 +1,6 @@
-import { modelos ,navegacaoDados } from "../modules/modelos.js"
-const CardsTemplate = `
+export const CardsTemplate = `
     <div class="content-ivcard">
-        <div id="ivcard-template" style="background: url(assets/img/capa_modelo_1.jpg)">
+        <div id="ivcard-template">
             <div class="ivcard-template-inner">
               
                 <div class="template-top">
@@ -20,9 +19,9 @@ const CardsTemplate = `
                               </li>
                             </ul>
                             </span>
-                    <h3 v-if="item.title === 'nome'">{{ item.value }}</h3>
-                    <img v-else-if="item.title === 'logotipo' || item.title === 'imagem'" :src="item.value" />
-                    
+                        <h3 v-if="item.title === 'nome'">{{ item.value }}</h3>
+                        <p v-if="item.title === 'descricao'" class="description">{{ item.value }}</p>
+                        <img v-else-if="item.title === 'logotipo' || item.title === 'imagem'" :src="item.value" />
                     </div>
                 </div>
                 <div class="template-middle">
@@ -38,7 +37,7 @@ const CardsTemplate = `
                               <li><a href="#!"><i class="material-icons dp48">edit</i> Editar</a></li>
                             </ul>
                             </span>
-                            <a :href="icone.url" target="_blank">
+                            <a :href="icone.url" target="_blank" class="ivcard-item-icone">
                                 <span class="ivcard-icone-icon" v-html="ivcardIcones(icone.icone)"></span>
                                 <span class="icone-title">{{icone.title}}</span>
                             </a>
@@ -55,8 +54,18 @@ const CardsTemplate = `
         </div>
     </div>
 `
+export const SalvarDados  = `
+    <div class="fixed-action-btn">
+    <a class="btn-floating btn-large black">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+      <li><a @click="salvarDados()" class="btn-floating green"><i class="material-icons">save</i></a></li>
+      <li><a class="btn-floating yellow darken-1"><i class="material-icons">preview</i></a></li>
+    </ul>
+  </div>
+`;
 
-export default CardsTemplate;
 
 
 /*

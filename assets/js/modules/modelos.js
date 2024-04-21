@@ -1,3 +1,5 @@
+import { fontSelect } from './fonts.js';
+
 export const modelos = res => {
     let modelos = document.createElement('div')
     res.forEach(item => {
@@ -31,14 +33,50 @@ export const carregarDados = {
                 <div class="ivcard-nav-imagem">
                 <label class="btn waves-effect waves-light darken-4" type="submit" name="action" for="updateImagem">Imagem
                     <i class="material-icons right">add_a_photo</i>
-                    <input type="file" @change="$root.handleFileChange" id="updateImagem" style="display:none">
+                    <input type="file" @change="$root.handleFileChangeImgTop" id="updateImagem" style="display:none">
                 </label>
                 </div>
             </div>
 
             <div v-if="$root.navegacao.type == 'title'">
                 <div class="ivcard-nav-logo">
-                <input type="text" @input="$root.editarTemplateTop('nome',event)" :value="$root.getTemplateTopValue('nome')"/>
+                    <input type="text" @input="$root.editarTemplateTop('nome',event)" :value="$root.getTemplateTopValue('nome')"/>
+                </div>
+                <div class="nav-item">
+                        <label>Cor</label>
+                        <div class="input-item ivcardColor">
+                            <label for="nomeTextColor" :style="'background-color:'+$root.user.styles.nomeTextColor"></label>
+                            <input type="color" style="display:none" id="nomeTextColor" v-model="$root.user.styles.nomeTextColor">
+                        </div>
+                    </div>
+                ${ fontSelect('@change="$root.selectFont()"','nada')}
+            </div>
+
+            <div v-if="$root.navegacao.type == 'styles'">
+                <div class="ivcard-nav-styles">
+                    <div class="nav-item">
+                        <label>Cor do Tema</label>
+                        <div class="input-item ivcardColor">
+                            <label for="templateColor" :style="'background-color:'+$root.user.styles.templateColor"></label>
+                            <input type="color" id="templateColor" v-model="$root.user.styles.templateColor">
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <label>Cor do Texto</label>
+                        <div class="input-item ivcardColor">
+                            <label for="templateTextColor" :style="'background-color:'+$root.user.styles.templateTextColor"></label>
+                            <input type="color" style="display:none" id="templateTextColor" v-model="$root.user.styles.templateTextColor">
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <label>Imagem de Fundo</label>
+                        <div class="input-item">
+                            <label class="btn waves-effect waves-light darken-4" type="submit" name="imagemFundo" for="imagemFundo">Imagem
+                                <i class="material-icons right">add_a_photo</i>
+                                <input type="file" @change="$root.handleFileChangeImgTemplate" id="imagemFundo" style="display:none">
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -124,5 +162,45 @@ export const navegacaoDados = event => {
             }
         });
     }
+
+    //Inicializar o JSColor
+    jscolor.install()
+
+    //Inicializar o select
+    $(document).ready(function() {
+        $('select').material_select();
+      });
+
+   
 };
+
+export function addStylesToHead(styles) {
+    let styleElement = document.querySelector('.ivcard-styles');
+    
+    // Se o elemento <style> ainda não existir, crie-o e adicione-o ao <head>
+    if (!styleElement) {
+        styleElement = document.createElement('style');
+        styleElement.classList.add('ivcard-styles');
+        document.head.appendChild(styleElement);
+    }
+
+    // Adicione os estilos ao elemento <style>
+    styleElement.innerHTML = cleanCSS(styles)
+}
+
+
+function cleanCSS(cssString) {
+    cssString = cssString.replace(/\s+/g, ' ').trim();
+    // Remove espaços extras em branco ao redor das chaves e dos dois pontos
+    cssString = cssString.replace(/\s*{\s*/g, '{').replace(/\s*:\s*/g, ':').replace(/\s*}\s*/g, '}');
+    // Remove espaços extras em branco após as vírgulas
+    cssString = cssString.replace(/\s*,\s*/g, ',');
+    // Remove espaços extras em branco após os pontos e vírgulas
+    cssString = cssString.replace(/\s*;\s*/g, ';');
+    // Remove espaços extras em branco dentro dos valores das propriedades
+    cssString = cssString.replace(/\s*([{}:;,])\s*/g, '$1');
+
+    return cssString;
+}
+
 
