@@ -23,7 +23,12 @@ echo '
             "templateBgColor": "#000000",
             "templateTextColor": "#FFFFFF",
             "iconeTextColor": "#FFFFFF",
-            "nomeTextColor": "#FFFFFF"
+            "iconeColor": "#FFFFFF",
+            "iconeBgColor":"transparent",
+            "nomeTextColor": "#FFFFFF",
+            "nomeFont": "arial",
+            "nomeFontWeight":"400"
+
         }
     }
 ';

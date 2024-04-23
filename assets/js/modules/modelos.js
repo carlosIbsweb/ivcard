@@ -27,6 +27,31 @@ export const carregarDados = {
                 <div class="ivcard-nav-icones">
                     <span @click="$root.AdicionarIcone(icon)" v-for="icon in $root.navegacao.icones" v-html="$root.ivcardIcones(icon.icone)"></span>
                 </div>
+                <div class="nav-item">
+                    <label>Cor do Ícone</label>
+                    <div class="input-item ivcardColor">
+                        <label for="iconeColor" :style="'background-color:'+$root.user.styles.iconeColor"></label>
+                        <input type="color" style="display:none" id="iconeColor" v-model="$root.user.styles.iconeColor">
+                    </div>
+                </div>
+
+                <div class="nav-item">
+                    <label>Cor do fundo</label>
+                    <div class="input-item ivcardColor">
+                        <label for="iconeBgColor" :style="'background-color:'+$root.user.styles.iconeBgColor"></label>
+                        <input type="color" style="display:none" id="iconeBgColor" v-model="$root.user.styles.iconeBgColor">
+                    </div>
+                </div>
+
+                <div class="nav-item">
+                    <label>Cor do Texto</label>
+                    <div class="input-item ivcardColor">
+                        <label for="iconeTextColor" :style="'background-color:'+$root.user.styles.iconeTextColor"></label>
+                        <input type="color" style="display:none" id="iconeTextColor" v-model="$root.user.styles.iconeTextColor">
+                    </div>
+                </div>
+
+
             </div>
 
              <div v-if="$root.navegacao.type == 'imagem'">
@@ -163,8 +188,6 @@ export const navegacaoDados = event => {
         });
     }
 
-    //Inicializar o JSColor
-    jscolor.install()
 
     //Inicializar o select
     $(document).ready(function() {

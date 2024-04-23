@@ -25,7 +25,7 @@ export const NavTemplate = `
         <li class="modelos">
             <a @click="Navegacao('styles',$event)" class="waves-effect waves-light">
                 <span class="material-icons">
-                    style
+                palette
                 </span>
                 <span class="legenda">Style</span>
             </a>

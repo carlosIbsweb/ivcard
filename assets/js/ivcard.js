@@ -99,7 +99,8 @@ fetch('../ivcard/usuario.php')
                         let styles = this.user.styles
                         addStylesToHead(`
                         .ivcard-icones span.ivcard-icon-inner a.ivcard-item-icone, .template-top .imagem img{
-                            border-color: ${styles.templateColor}
+                            border-color: ${styles.templateColor};
+                            background-color: ${styles.iconeBgColor}
                         }
                         .info{
                             background-color: ${styles.templateColor};
@@ -111,7 +112,7 @@ fetch('../ivcard/usuario.php')
                             color: ${styles.templateTextColor}
                         }
                         .ivcard-icon-inner .icone-title, .ivcard-icones svg, .ivcard-icones svg path, .ivcard-icones svg circle {
-                            fill: ${styles.iconeTextColor};
+                            fill: ${styles.iconeColor} !important;
                             color: ${styles.iconeTextColor}
                         }
                         .template-top h3 {
@@ -185,19 +186,9 @@ fetch('../ivcard/usuario.php')
                     </div>
                     `,
                 watch: {
-                    'user.templateTop': {handler() {this.gerar()}},
-                    'user.icones': {handler() {this.gerar()}},
-                    'user.styles.templateColor': {
-                        handler() {this.StylesModeloUser()}
-                    },
-                    'user.styles.templateTextColor': {
-                        handler() {this.StylesModeloUser()}
-                    },
-                    'user.styles.templateImagem': {
-                        handler() {this.StylesModeloUser()}
-                    },
-                    'user.styles.nomeTextColor': {
-                        handler() {this.StylesModeloUser()}
+                    'user': {
+                        handler() {this.StylesModeloUser()},
+                        deep: true
                     }
                 },
                 mounted() {
@@ -233,20 +224,6 @@ fetch('../ivcard/usuario.php')
                        */
                       addStylesToHead(usuario.stylesModelo)
                       this.StylesModeloUser();
-
-                      
-
-                      // let's set default options for all color pickers
-                    jscolor.presets.default = {
-                        value: this.user.styles.templateColor,
-                        position: 'right',
-                        palette: [
-                            '#000000', '#7d7d7d', '#870014', '#ec1c23', '#ff7e26',
-                            '#fef100', '#22b14b', '#00a1e7', '#3f47cc', '#a349a4',
-                            '#ffffff', '#c3c3c3', '#b87957', '#feaec9', '#ffc80d',
-                            '#eee3af', '#b5e61d', '#99d9ea', '#7092be', '#c8bfe7',
-                        ]
-                    };
 
                 },
                 components: {
